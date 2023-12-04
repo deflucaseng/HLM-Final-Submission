@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Alias</title>
+</head>
+<body>
+    <h1>Add New Alias</h1>
+
+    <form action="{{ url_for('alias_add') }}" method="POST">
+        <div>
+            <label for="Alias_ID">Alias ID:</label>
+            <input type="text" id="Alias_ID" name="Alias_ID" required>
+        </div>
+        <div>
+            <label for="Criminal_ID">Criminal ID:</label>
+            <input type="text" id="Criminal_ID" name="Criminal_ID" required>
+        </div>
+        <div>
+            <label for="Alias">Alias:</label>
+            <input type="text" id="Alias" name="Alias" required>
+        </div>
+        <div>
+            <input type="submit" value="Add Alias">
+        </div>
+    </form>
+
+    <p><a href="{{ url_for('alias_accounts') }}">Back to Alias Accounts</a></p>
+</body>
+</html>

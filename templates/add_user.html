@@ -1,0 +1,27 @@
+<!-- templates/add_user.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+</head>
+
+<body>
+    <h1>Add User</h1>
+
+    <form method="POST" action="{{ url_for('add_user') }}">
+        <label for="add-username">Username:</label>
+        <input type="text" id="add-username" name="username" required>
+        <br>
+        <label for="add-password">Password:</label>
+        <input type="password" id="add-password" name="password" required>
+        <br>
+        <button type="submit">Add User</button>
+    </form>
+
+    <p><a href="{{ url_for('user_accounts') }}">Cancel</a></p>
+</body>
+
+</html>

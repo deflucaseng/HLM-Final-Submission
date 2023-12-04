@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d4caca; 
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            background-color: #86aeb5;
+            color: #fff;
+            padding: 10px;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid rgb(221, 221, 221);
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            cursor: pointer;
+            position: relative;
+        }
+        .sort-arrow {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            margin-left: 5px;
+            transition: opacity 0.2s;
+        }
+        .up-arrow {
+            border-bottom: 5px solid black;
+            opacity: 0;
+        }
+        .down-arrow {
+            border-top: 5px solid black;
+        }
+        div {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        p {
+            margin-top: 20px;
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+            margin-right: 10px;
+            padding: 8px 16px;
+            background-color: #eee;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        a:hover {
+            background-color: #ddd;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+    <h1>Alias Accounts</h1>
+
+    <div>
+        <label for="search">Search:</label>
+        <input type="text" id="search" oninput="filterTable()">
+    </div>
+
+    <table border="1" id="alias_table">
+        <tr>
+            <th onclick="sortTableByDirection(0)">Alias ID<span id="arrow0" class="sort-arrow up-arrow"></span></th>
+            <th onclick="sortTableByDirection(1)">Criminal ID<span id="arrow1" class="sort-arrow up-arrow"></span></th>
+            <th onclick="sortTableByDirection(2)">Alias<span id="arrow2" class="sort-arrow up-arrow"></span></th>
+            <th>Action</th>
+        </tr>
+        {% for alias in aliases %}
+            <tr>
+                <td>{{ alias.Alias_ID }}</td>
+                <td>{{ alias.Criminal_ID }}</td>
+                <td>{{ alias.Alias }}</td>
+                <td>
+                    <a href="{{ url_for('alias_edit', alias_id=alias.Alias_ID) }}">Edit</a>
+                    <a href="{{ url_for('alias_delete', alias_id=alias.Alias_ID) }}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+    <p><a href="{{ url_for('alias_add') }}">Add a New Alias</a></p>
+    
+    <script>
+        function sortTableByDirection(columnIndex) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchCount = 0;
+            table = document.getElementById("alias_table");
+            switching = true;
+            dir = "asc";
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[columnIndex];
+                    y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+                    var isNumeric = !isNaN(parseFloat(x.innerHTML)) && isFinite(x.innerHTML);
+                    if (dir === 'asc') {
+                        if (isNumeric && parseFloat(x.innerHTML) > parseFloat(y.innerHTML)) {
+                            shouldSwitch = true;
+                            break;
+                        } else if (!isNumeric && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir === 'desc') {
+                        if (isNumeric && parseFloat(x.innerHTML) < parseFloat(y.innerHTML)) {
+                            shouldSwitch = true;
+                            break;
+                        } else if (!isNumeric && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchCount++;
+                } else {
+                    if (switchCount === 0 && dir === "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+
+            updateArrowDirection(columnIndex, dir);
+        }
+
+        function updateArrowDirection(columnIndex, direction) {
+            var arrowId = 'arrow' + columnIndex;
+            var arrow = document.getElementById(arrowId);
+            arrow.classList.toggle('up-arrow', direction === 'asc');
+            arrow.classList.toggle('down-arrow', direction === 'desc');
+            void arrow.offsetWidth;
+            arrow.style.opacity = '1';
+            setTimeout(function () {
+                arrow.style.opacity = '0';
+            }, 200);
+        }
+        function filterTable() {
+            var input, filter, table, rows, cells, i, j, shouldShow;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("alias_table");
+            rows = table.rows;
+            for (i = 1; i < rows.length; i++) {
+                cells = rows[i].getElementsByTagName("TD");
+                shouldShow = false;
+                for (j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toUpperCase().indexOf(filter) > -1) {
+                        shouldShow = true;
+                        break;
+                    }
+                }
+                if (shouldShow) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

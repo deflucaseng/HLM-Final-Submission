@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Officer</title>
+</head>
+<body>
+    <h1>Edit Officer</h1>
+    <form action="{{ url_for('officer_edit', officer_id=officers.Officer_ID) }}" method="POST">
+        <input type="hidden" name="Officer_ID" value="{{ officers.Officer_ID }}">
+
+        <label for="Last">Last Name:</label>
+        <input type="text" name="Last" value="{{ officers.Last }}" required><br>
+
+        <label for="First">First Name:</label>
+        <input type="text" name="First" value="{{ officers.First }}" required><br>
+
+        <label for="Precinct">Precinct:</label>
+        <input type="text" name="Precinct" value="{{ officers.Precinct }}" required><br>
+
+        <label for="Badge">Badge:</label>
+        <input type="text" name="Badge" value="{{ officers.Badge }}" required><br>
+
+        <label for="Phone">Phone Number:</label>
+        <input type="tel" name="Phone" value="{{ officers.Phone }}"><br> <!-- Phone might not be required -->
+
+        <label for="Status">Status:</label>
+        <select name="Status" required>
+            <option value="A" {% if officers.Status == 'A' %}selected{% endif %}>Active</option>
+            <option value="I" {% if officers.Status == 'I' %}selected{% endif %}>Inactive</option>
+        </select><br>
+
+        <button type="submit">Update Officer</button>
+    </form>
+    <a href="{{ url_for('officer_accounts') }}">Back to Officer List</a>
+</body>
+</html>

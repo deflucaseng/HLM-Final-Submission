@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Appeal</title>
+</head>
+<body>
+    <h1>Add New Appeal</h1>
+
+    <form action="{{ url_for('appeals_add') }}" method="POST">
+        <div>
+            <label for="Appeal_ID">Appeal ID:</label>
+            <input type="text" id="Appeal_ID" name="Appeal_ID" required>
+        </div>
+        <div>
+            <label for="Crime_ID">Crime ID:</label>
+            <input type="text" id="Crime_ID" name="Crime_ID" required>
+        </div>
+        <div>
+            <label for="Filing_date">Filing Date:</label>
+            <input type="date" id="Filing_date" name="Filing_date" required>
+        </div>
+        <div>
+            <label for="Hearing_date">Hearing Date:</label>
+            <input type="date" id="Hearing_date" name="Hearing_date" required>
+        </div>
+        <div>
+            <label for="Status">Status:</label>
+            <input type="text" id="Status" name="Status" required>
+        </div>
+        <div>
+            <input type="submit" value="Add Appeal">
+        </div>
+    </form>
+
+    <p><a href="{{ url_for('appeals_accounts') }}">Back to Appeals Accounts</a></p>
+</body>
+</html>

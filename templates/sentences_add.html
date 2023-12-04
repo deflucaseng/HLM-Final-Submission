@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Sentence</title>
+</head>
+<body>
+    <h1>Add New Sentence</h1>
+
+    <form action="{{ url_for('sentences_add') }}" method="POST">
+        <div>
+            <label for="Sentence_ID">Sentence ID:</label>
+            <input type="text" id="Sentence_ID" name="Sentence_ID" required>
+        </div>
+        <div>
+            <label for="Criminal_ID">Criminal ID:</label>
+            <input type="text" id="Criminal_ID" name="Criminal_ID" required>
+        </div>
+        <div>
+            <label for="Type">Type:</label>
+            <input type="text" id="Type" name="Type" required>
+        </div>
+        <div>
+            <label for="Prob_ID">Probation Officer ID:</label>
+            <input type="text" id="Prob_ID" name="Prob_ID" required>
+        </div>
+        <div>
+            <label for="Start_date">Start Date:</label>
+            <input type="date" id="Start_date" name="Start_date" required>
+        </div>
+        <div>
+            <label for="End_date">End Date:</label>
+            <input type="date" id="End_date" name="End_date" required>
+        </div>
+        <div>
+            <label for="Violations">Violations:</label>
+            <input type="text" id="Violations" name="Violations" required>
+        </div>
+        <div>
+            <input type="submit" value="Add Sentence">
+        </div>
+    </form>
+
+    <p><a href="{{ url_for('sentences_accounts') }}">Back to Sentences Accounts</a></p>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Criminal</title>
+</head>
+<body>
+    <h1>Edit Criminal</h1>
+    <form action="{{ url_for('criminal_edit', criminal_id=criminal.Criminal_ID) }}" method="POST">
+        <label for="Criminal_ID">Criminal ID:</label>
+        <input type="number" name="Criminal_ID" value="{{ criminal.Criminal_ID }}" required readonly><br>
+
+        <label for="Last">Last Name:</label>
+        <input type="text" name="Last" value="{{ criminal.Last }}" required><br>
+
+        <label for="First">First Name:</label>
+        <input type="text" name="First" value="{{ criminal.First }}" required><br>
+
+        <label for="Street">Street:</label>
+        <input type="text" name="Street" value="{{ criminal.Street }}" required><br>
+
+        <label for="City">City:</label>
+        <input type="text" name="City" value="{{ criminal.City }}" required><br>
+
+        <label for="State">State:</label>
+        <input type="text" name="State" value="{{ criminal.State }}" required><br>
+
+        <label for="Zip">Zip Code:</label>
+        <input type="text" name="Zip" value="{{ criminal.Zip }}" required><br>
+
+        <label for="Phone">Phone Number:</label>
+        <input type="tel" name="Phone" value="{{ criminal.Phone }}" required><br>
+
+        <label for="V_status">V Status:</label>
+        <select name="V_status" required>
+            <option value="Y" {% if criminal.V_status == "Y" %}selected{% endif %}>Yes</option>
+            <option value="N" {% if criminal.V_status == "N" %}selected{% endif %}>No</option>
+        </select><br>
+
+        <label for="P_status">P Status:</label>
+        <select name="P_status" required>
+            <option value="Y" {% if criminal.P_status == "Y" %}selected{% endif %}>Yes</option>
+            <option value="N" {% if criminal.P_status == "N" %}selected{% endif %}>No</option>
+        </select><br>
+
+        <button type="submit">Update Criminal</button>
+    </form>
+    <a href="{{ url_for('criminal_accounts') }}">Back to Criminal List</a>
+</body>
+</html>

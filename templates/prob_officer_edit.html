@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Probation Officer</title>
+</head>
+<body>
+    <h1>Edit Probation Officer</h1>
+    <form action="{{ url_for('prob_officer_edit', prob_id=officer.Prob_ID) }}" method="POST">
+        <input type="hidden" name="Prob_ID" value="{{ officer.Prob_ID }}">
+
+        <label for="Last">Last Name:</label>
+        <input type="text" name="Last" value="{{ officer.Last }}" required><br>
+
+        <label for="First">First Name:</label>
+        <input type="text" name="First" value="{{ officer.First }}" required><br>
+
+        <label for="Street">Street:</label>
+        <input type="text" name="Street" value="{{ officer.Street }}" required><br>
+
+        <label for="City">City:</label>
+        <input type="text" name="City" value="{{ officer.City }}" required><br>
+
+        <label for="State">State:</label>
+        <input type="text" name="State" value="{{ officer.State }}" required><br>
+
+        <label for="Zip">Zip Code:</label>
+        <input type="text" name="Zip" value="{{ officer.Zip }}" required><br>
+
+        <label for="Phone">Phone Number:</label>
+        <input type="tel" name="Phone" value="{{ officer.Phone }}" required><br>
+
+        <label for="Email">Email:</label>
+        <input type="email" name="Email" value="{{ officer.Email }}" required><br>
+
+        <label for="Status">Status:</label>
+        <select name="Status" required>
+            <option value="A" {% if officer.Status == 'A' %}selected{% endif %}>Active</option>
+            <option value="I" {% if officer.Status == 'I' %}selected{% endif %}>Inactive</option>
+        </select><br>
+
+        <button type="submit">Update Officer</button>
+    </form>
+    <a href="{{ url_for('prob_officer_accounts') }}">Back to Officer List</a>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Officer</title>
+</head>
+<body>
+    <h1>Add New Officer</h1>
+    <form action="{{ url_for('officer_add') }}" method="POST">
+        <label for="Officer_ID">Officer ID:</label>
+        <input type="number" name="Officer_ID" required><br>
+
+        <label for="Last">Last Name:</label>
+        <input type="text" name="Last" required><br>
+
+        <label for="First">First Name:</label>
+        <input type="text" name="First" required><br>
+
+        <label for="Precinct">Precinct:</label>
+        <input type="text" name="Precinct" required><br>
+
+        <label for="Badge">Badge:</label>
+        <input type="text" name="Badge" required><br>
+
+        <label for="Phone">Phone Number:</label>
+        <input type="tel" name="Phone"><br> <!-- Phone might not be required -->
+
+        <label for="Status">Status ('A' for Active, 'I' for Inactive):</label>
+        <select name="Status" required>
+            <option value="A">Active</option>
+            <option value="I">Inactive</option>
+        </select><br>
+
+        <button type="submit">Add Officer</button>
+    </form>
+    <a href="{{ url_for('officer_accounts') }}">Back to Officer List</a>
+</body>
+</html>

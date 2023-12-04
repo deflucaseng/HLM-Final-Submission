@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Crime Charge</title>
+</head>
+<body>
+    <h1>Edit Crime Charge</h1>
+
+    <form action="{{ url_for('crime_charges_edit', charge_id=charge.Charge_ID) }}" method="POST">
+        <div>
+            <label for="Crime_ID">Crime ID:</label>
+            <input type="text" id="Crime_ID" name="Crime_ID" value="{{ charge.Crime_ID }}" required>
+        </div>
+        <div>
+            <label for="Crime_code">Crime Code:</label>
+            <input type="text" id="Crime_code" name="Crime_code" value="{{ charge.Crime_code }}" required>
+        </div>
+        <div>
+            <label for="Charge_status">Charge Status:</label>
+            <input type="text" id="Charge_status" name="Charge_status" value="{{ charge.Charge_status }}" required>
+        </div>
+        <div>
+            <label for="Fine_amount">Fine Amount:</label>
+            <input type="text" id="Fine_amount" name="Fine_amount" value="{{ charge.Fine_amount }}" required>
+        </div>
+        <div>
+            <label for="Court_fee">Court Fee:</label>
+            <input type="text" id="Court_fee" name="Court_fee" value="{{ charge.Court_fee }}" required>
+        </div>
+        <div>
+            <label for="Amount_paid">Amount Paid:</label>
+            <input type="text" id="Amount_paid" name="Amount_paid" value="{{ charge.Amount_paid }}" required>
+        </div>
+        <div>
+            <label for="Pay_due_date">Pay Due Date:</label>
+            <input type="date" id="Pay_due_date" name="Pay_due_date" value="{{ charge.Pay_due_date }}" required>
+        </div>
+        <div>
+            <input type="submit" value="Update Crime Charge">
+        </div>
+    </form>
+
+    <p><a href="{{ url_for('crime_charges_accounts') }}">Back to Crime Charges Accounts</a></p>
+</body>
+</html>

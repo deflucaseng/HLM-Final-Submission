@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Crime Officer</title>
+</head>
+<body>
+    <h1>Edit Crime Officer</h1>
+
+    <form action="{{ url_for('crime_officers_edit', crime_id=crime_officer.Crime_ID, officer_id=crime_officer.Officer_ID) }}" method="POST">
+        <div>
+            <label for="Crime_ID">Crime ID:</label>
+            <input type="text" id="Crime_ID" name="Crime_ID" value="{{ crime_officer.Crime_ID }}" required>
+        </div>
+        <div>
+            <label for="Officer_ID">Officer ID:</label>
+            <input type="text" id="Officer_ID" name="Officer_ID" value="{{ crime_officer.Officer_ID }}" required>
+        </div>
+        <div>
+            <input type="submit" value="Update Crime Officer">
+        </div>
+    </form>
+
+    <p><a href="{{ url_for('crime_officers_accounts') }}">Back to Crime Officers Accounts</a></p>
+</body>
+</html>

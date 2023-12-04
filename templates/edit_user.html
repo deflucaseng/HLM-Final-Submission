@@ -1,0 +1,27 @@
+<!-- templates/edit_user.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+</head>
+
+<body>
+    <h1>Edit User</h1>
+
+    <form method="POST" action="{{ url_for('edit_user', user_id=user.id) }}">
+        <label for="edit-username">Username:</label>
+        <input type="text" id="edit-username" name="username" value="{{ user.username }}" required>
+        <br>
+        <label for="edit-password">Password:</label>
+        <input type="password" id="edit-password" name="password" value="{{ user.password }}" required>
+        <br>
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <p><a href="{{ url_for('user_accounts') }}">Cancel</a></p>
+</body>
+
+</html>

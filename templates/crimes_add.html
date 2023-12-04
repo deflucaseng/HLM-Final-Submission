@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Crime</title>
+</head>
+<body>
+    <h1>Add New Crime</h1>
+
+    <form action="{{ url_for('crimes_add') }}" method="POST">
+        <div>
+            <label for="Crime_ID">Crime ID:</label>
+            <input type="text" id="Crime_ID" name="Crime_ID" required>
+        </div>
+        <div>
+            <label for="Criminal_ID">Criminal ID:</label>
+            <input type="text" id="Criminal_ID" name="Criminal_ID" required>
+        </div>
+        <div>
+            <label for="Classification">Classification:</label>
+            <input type="text" id="Classification" name="Classification" required>
+        </div>
+        <div>
+            <label for="Status">Status:</label>
+            <input type="text" id="Status" name="Status" required>
+        </div>
+        <div>
+            <label for="Date_charged">Date Charged:</label>
+            <input type="date" id="Date_charged" name="Date_charged" required>
+        </div>
+        <div>
+            <label for="Hearing_date">Hearing Date:</label>
+            <input type="date" id="Hearing_date" name="Hearing_date" required>
+        </div>
+        <div>
+            <label for="Appeal_cut_date">Appeal Cut Date:</label>
+            <input type="date" id="Appeal_cut_date" name="Appeal_cut_date" required>
+        </div>
+        <div>
+            <input type="submit" value="Add Crime">
+        </div>
+    </form>
+
+    <p><a href="{{ url_for('crimes_accounts') }}">Back to Crime Accounts</a></p>
+</body>
+</html>
