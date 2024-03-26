@@ -18,16 +18,16 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/bootstrap.css') }}" />
 
   <!-- Fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,700&display=swap" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='/css/style.css') }}" rel="stylesheet" />
 
   <!-- Responsive style -->
-  <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='/css/responsive.css') }}" rel="stylesheet" />
 
   <style>
     .hero_area {
@@ -111,6 +111,7 @@
           <div class="row">
             <div class="col-md-9 mx-auto">
               <div class="contact-form">
+
                 <form action="">
                   <div>
                     <input type="text" placeholder="Full Name ">
